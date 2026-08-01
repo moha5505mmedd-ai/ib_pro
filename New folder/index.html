@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DKM – الجامعة الذكية</title>
+  <meta name="description" content="منصة DKM التعليمية الذكية – استعرض المناهج والمحاضرات بمساعدة الذكاء الاصطناعي" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  SCREEN 1 — AUTH                               -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="screen-auth" class="screen active">
+    <div class="auth-layout">
+
+      <!-- Left Panel — Illustration -->
+      <div class="auth-illustration">
+        <div class="auth-illustration-inner">
+          <div class="auth-logo-big">
+            <div class="logo-glow"></div>
+            <span class="logo-icon"><i class="fa-solid fa-brain"></i></span>
+          </div>
+          <h1 class="auth-headline">الجامعة الذكية</h1>
+          <p class="auth-sub">منصة DKM تجمع قوة الذكاء الاصطناعي مع المناهج الأكاديمية – ابحث، تعلّم، واكتشف.</p>
+          <div class="auth-features">
+            <div class="auth-feat"><i class="fa-solid fa-file-pdf"></i><span>بحث ذكي في ملفات PDF</span></div>
+            <div class="auth-feat"><i class="fa-solid fa-video"></i><span>استعرض المحاضرات المرئية</span></div>
+            <div class="auth-feat"><i class="fa-solid fa-robot"></i><span>وكيل AI مخصص للطالب</span></div>
+          </div>
+          <!-- Floating orbs -->
+          <div class="orb orb-1"></div>
+          <div class="orb orb-2"></div>
+          <div class="orb orb-3"></div>
+        </div>
+      </div>
+
+      <!-- Right Panel — Form -->
+      <div class="auth-form-panel">
+        <div class="auth-form-card">
+          <div class="auth-form-logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>DKM</span>
+          </div>
+
+          <!-- Tab switcher -->
+          <div class="auth-tabs">
+            <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">تسجيل الدخول</button>
+            <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">إنشاء حساب</button>
+          </div>
+
+          <!-- Login Form -->
+          <form class="auth-form-body" id="form-login" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label for="login-id"><i class="fa-solid fa-id-card"></i> الرقم الجامعي</label>
+              <input type="text" id="login-id" placeholder="مثال: 2021001234" autocomplete="username" />
+            </div>
+            <div class="form-group">
+              <label for="login-pass"><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+              <div class="input-with-icon">
+                <input type="password" id="login-pass" placeholder="أدخل كلمة المرور" autocomplete="current-password" />
+                <button type="button" class="toggle-pass" onclick="togglePassword('login-pass', this)"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="form-row-space">
+              <label class="checkbox-label">
+                <input type="checkbox" id="remember-me" /> تذكرني
+              </label>
+              <a href="#" class="forgot-link">نسيت كلمة المرور؟</a>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="btn-login">
+              <span class="btn-text">دخول</span>
+              <span class="btn-spinner hidden"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+            </button>
+          </form>
+
+          <!-- Register Form -->
+          <form class="auth-form-body hidden" id="form-register" onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label for="reg-name"><i class="fa-solid fa-user"></i> الاسم الكامل</label>
+              <input type="text" id="reg-name" placeholder="أدخل اسمك الكامل" />
+            </div>
+            <div class="form-group">
+              <label for="reg-id"><i class="fa-solid fa-id-card"></i> الرقم الجامعي</label>
+              <input type="text" id="reg-id" placeholder="مثال: 2024005678" />
+            </div>
+            <div class="form-group">
+              <label for="reg-pass"><i class="fa-solid fa-lock"></i> كلمة المرور</label>
+              <div class="input-with-icon">
+                <input type="password" id="reg-pass" placeholder="8 أحرف على الأقل" />
+                <button type="button" class="toggle-pass" onclick="togglePassword('reg-pass', this)"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reg-pass2"><i class="fa-solid fa-shield-halved"></i> تأكيد كلمة المرور</label>
+              <input type="password" id="reg-pass2" placeholder="أعد إدخال كلمة المرور" />
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="btn-register">
+              <span class="btn-text">إنشاء الحساب</span>
+              <span class="btn-spinner hidden"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  APP SHELL (Screens 2-5)                       -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="app-shell" class="hidden">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <i class="fa-solid fa-brain"></i>
+          <span class="sidebar-logo-text">DKM</span>
+        </div>
+        <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" title="طي/بسط الشريط">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" id="nav-dashboard" onclick="navigateTo('dashboard')">
+          <i class="fa-solid fa-house-chimney"></i>
+          <span class="nav-label">الرئيسية</span>
+        </a>
+        <a href="#" class="nav-item" id="nav-upload" onclick="navigateTo('upload')">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span class="nav-label">إدارة المناهج</span>
+        </a>
+        <a href="#" class="nav-item" id="nav-query" onclick="navigateTo('query')">
+          <i class="fa-solid fa-table-list"></i>
+          <span class="nav-label">نظام الاستعلام</span>
+        </a>
+        <a href="#" class="nav-item" id="nav-chat" onclick="navigateTo('chat')">
+          <i class="fa-solid fa-robot"></i>
+          <span class="nav-label">الوكيل الذكي</span>
+          <span class="nav-badge">AI</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar" id="sidebar-avatar">أ</div>
+          <div class="user-info">
+            <span class="user-name" id="sidebar-name">أحمد محمد</span>
+            <span class="user-role">طالب</span>
+          </div>
+        </div>
+        <div class="sidebar-actions">
+          <button class="icon-btn" onclick="toggleTheme()" title="تغيير المظهر" id="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button class="icon-btn" onclick="handleLogout()" title="تسجيل الخروج">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content area -->
+    <div class="main-wrapper" id="main-wrapper">
+
+      <!-- Top bar (mobile) -->
+      <header class="topbar">
+        <button class="icon-btn" onclick="toggleMobileSidebar()"><i class="fa-solid fa-bars"></i></button>
+        <div class="topbar-logo"><i class="fa-solid fa-brain"></i> DKM</div>
+        <button class="icon-btn" onclick="toggleTheme()" id="theme-toggle-mobile"><i class="fa-solid fa-moon"></i></button>
+      </header>
+
+      <!-- ─── SCREEN 2: DASHBOARD ─── -->
+      <section id="screen-dashboard" class="app-screen active">
+        <div class="page-header">
+          <div>
+            <h2 class="page-title" id="dashboard-greeting">مرحباً، أحمد 👋</h2>
+            <p class="page-subtitle">هنا ملخص نشاطك الأكاديمي اليوم</p>
+          </div>
+          <button class="btn-primary" onclick="navigateTo('chat')">
+            <i class="fa-solid fa-plus"></i> محادثة جديدة
+          </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card loading-shimmer">
+            <div class="stat-icon bg-blue"><i class="fa-solid fa-file-pdf"></i></div>
+            <div class="stat-body">
+              <span class="stat-value" id="stat-curricula">—</span>
+              <span class="stat-label">مناهج مرفوعة</span>
+            </div>
+            <div class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +2</div>
+          </div>
+          <div class="stat-card loading-shimmer">
+            <div class="stat-icon bg-purple"><i class="fa-solid fa-video"></i></div>
+            <div class="stat-body">
+              <span class="stat-value" id="stat-videos">—</span>
+              <span class="stat-label">محاضرات مرئية</span>
+            </div>
+            <div class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +5</div>
+          </div>
+          <div class="stat-card loading-shimmer">
+            <div class="stat-icon bg-green"><i class="fa-solid fa-comments"></i></div>
+            <div class="stat-body">
+              <span class="stat-value" id="stat-chats">—</span>
+              <span class="stat-label">محادثات AI</span>
+            </div>
+            <div class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +12</div>
+          </div>
+          <div class="stat-card loading-shimmer">
+            <div class="stat-icon bg-orange"><i class="fa-solid fa-bolt"></i></div>
+            <div class="stat-body">
+              <span class="stat-value" id="stat-queries">—</span>
+              <span class="stat-label">استعلام اليوم</span>
+            </div>
+            <div class="stat-trend neutral"><i class="fa-solid fa-minus"></i> ثابت</div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section-title"><i class="fa-solid fa-zap"></i> إجراءات سريعة</div>
+        <div class="quick-actions">
+          <button class="quick-action-card" onclick="navigateTo('chat')">
+            <div class="qa-icon"><i class="fa-solid fa-robot"></i></div>
+            <span>سؤال AI</span>
+          </button>
+          <button class="quick-action-card" onclick="navigateTo('upload')">
+            <div class="qa-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+            <span>رفع منهج</span>
+          </button>
+          <button class="quick-action-card" onclick="navigateTo('query')">
+            <div class="qa-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <span>بحث متقدم</span>
+          </button>
+          <button class="quick-action-card" onclick="navigateTo('upload')">
+            <div class="qa-icon"><i class="fa-solid fa-clapperboard"></i></div>
+            <span>رفع فيديو</span>
+          </button>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> النشاط الأخير</div>
+        <div class="activity-list" id="activity-list">
+          <div class="activity-skeleton"></div>
+          <div class="activity-skeleton"></div>
+          <div class="activity-skeleton"></div>
+        </div>
+      </section>
+
+      <!-- ─── SCREEN 3: UPLOAD ─── -->
+      <section id="screen-upload" class="app-screen">
+        <div class="page-header">
+          <div>
+            <h2 class="page-title">إدارة المناهج</h2>
+            <p class="page-subtitle">ارفع ملفات PDF والمحاضرات المرئية لمعالجتها بالذكاء الاصطناعي</p>
+          </div>
+        </div>
+
+        <div class="upload-grid">
+          <!-- PDF Upload -->
+          <div class="upload-card">
+            <div class="upload-card-header">
+              <div class="upload-card-icon pdf"><i class="fa-solid fa-file-pdf"></i></div>
+              <div>
+                <h3>رفع ملفات PDF</h3>
+                <p>المناهج والكتب الدراسية</p>
+              </div>
+            </div>
+            <div class="drop-zone" id="pdf-drop-zone"
+                 ondragover="handleDragOver(event,'pdf-drop-zone')"
+                 ondragleave="handleDragLeave('pdf-drop-zone')"
+                 ondrop="handleDrop(event,'pdf')">
+              <div class="drop-zone-content">
+                <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <p class="drop-text">اسحب ملفات PDF هنا</p>
+                <p class="drop-hint">أو</p>
+                <button class="btn-outline" onclick="document.getElementById('pdf-input').click()">تصفح الملفات</button>
+                <p class="drop-formats">PDF – حجم أقصى 50 MB</p>
+              </div>
+              <input type="file" id="pdf-input" accept=".pdf" multiple class="hidden" onchange="handleFileSelect(event,'pdf')" />
+            </div>
+            <!-- Upload Queue -->
+            <div class="upload-queue" id="pdf-queue"></div>
+          </div>
+
+          <!-- Video Upload -->
+          <div class="upload-card">
+            <div class="upload-card-header">
+              <div class="upload-card-icon video"><i class="fa-solid fa-film"></i></div>
+              <div>
+                <h3>رفع المحاضرات المرئية</h3>
+                <p>ملفات MP4 والفيديوهات التعليمية</p>
+              </div>
+            </div>
+            <div class="drop-zone" id="video-drop-zone"
+                 ondragover="handleDragOver(event,'video-drop-zone')"
+                 ondragleave="handleDragLeave('video-drop-zone')"
+                 ondrop="handleDrop(event,'video')">
+              <div class="drop-zone-content">
+                <div class="drop-icon video-icon"><i class="fa-solid fa-clapperboard"></i></div>
+                <p class="drop-text">اسحب ملفات الفيديو هنا</p>
+                <p class="drop-hint">أو</p>
+                <button class="btn-outline" onclick="document.getElementById('video-input').click()">تصفح الملفات</button>
+                <p class="drop-formats">MP4 / MOV / AVI – حجم أقصى 2 GB</p>
+              </div>
+              <input type="file" id="video-input" accept="video/*" multiple class="hidden" onchange="handleFileSelect(event,'video')" />
+            </div>
+            <!-- Upload Queue -->
+            <div class="upload-queue" id="video-queue"></div>
+          </div>
+        </div>
+
+        <!-- Uploaded Files Table -->
+        <div class="section-title"><i class="fa-solid fa-folder-open"></i> الملفات المرفوعة</div>
+        <div class="files-table-wrap">
+          <div class="table-toolbar">
+            <input type="text" class="search-input-sm" placeholder="ابحث في الملفات..." id="files-search" oninput="filterFiles(this.value)" />
+            <div class="table-filters">
+              <button class="filter-chip active" onclick="filterByType('all',this)">الكل</button>
+              <button class="filter-chip" onclick="filterByType('pdf',this)">PDF</button>
+              <button class="filter-chip" onclick="filterByType('video',this)">فيديو</button>
+            </div>
+          </div>
+          <div id="files-list" class="files-list"></div>
+        </div>
+      </section>
+
+      <!-- ─── SCREEN 4: QUERY SYSTEM ─── -->
+      <section id="screen-query" class="app-screen">
+        <div class="page-header">
+          <div>
+            <h2 class="page-title">نظام الاستعلام</h2>
+            <p class="page-subtitle">استعرض وابحث في بيانات الطلاب والمناهج</p>
+          </div>
+          <button class="btn-primary" onclick="exportData()">
+            <i class="fa-solid fa-file-export"></i> تصدير
+          </button>
+        </div>
+
+        <!-- Search + Filter -->
+        <div class="query-toolbar">
+          <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon-inp"></i>
+            <input type="text" id="query-search" class="search-input-lg" placeholder="ابحث باسم الطالب، المنهج..." oninput="handleQuerySearch(this.value)" />
+          </div>
+          <div class="query-filters">
+            <select class="select-filter" id="filter-type" onchange="applyQueryFilter()">
+              <option value="all">كل الأنواع</option>
+              <option value="student">الطلاب</option>
+              <option value="curriculum">المناهج</option>
+              <option value="session">الجلسات</option>
+            </select>
+            <select class="select-filter" id="filter-status" onchange="applyQueryFilter()">
+              <option value="all">كل الحالات</option>
+              <option value="active">نشط</option>
+              <option value="pending">معلق</option>
+              <option value="done">مكتمل</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Desktop Table -->
+        <div class="data-table-wrap" id="query-table-wrap">
+          <table class="data-table" id="query-table">
+            <thead>
+              <tr>
+                <th onclick="sortTable('id')">الرقم <i class="fa-solid fa-sort"></i></th>
+                <th onclick="sortTable('name')">الاسم <i class="fa-solid fa-sort"></i></th>
+                <th onclick="sortTable('type')">النوع <i class="fa-solid fa-sort"></i></th>
+                <th onclick="sortTable('date')">التاريخ <i class="fa-solid fa-sort"></i></th>
+                <th onclick="sortTable('status')">الحالة <i class="fa-solid fa-sort"></i></th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="query-tbody"></tbody>
+          </table>
+          <div class="table-pagination" id="query-pagination"></div>
+        </div>
+
+        <!-- Mobile Cards (auto-shown via CSS) -->
+        <div class="query-cards-mobile" id="query-cards-mobile"></div>
+      </section>
+
+      <!-- ─── SCREEN 5: AI CHAT ─── -->
+      <section id="screen-chat" class="app-screen chat-screen">
+        <div class="chat-layout">
+
+          <!-- Chat Sidebar — History -->
+          <div class="chat-sidebar" id="chat-sidebar">
+            <div class="chat-sidebar-header">
+              <span>المحادثات</span>
+              <button class="btn-new-chat" onclick="startNewChat()" title="محادثة جديدة">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <div class="chat-history-list" id="chat-history-list"></div>
+          </div>
+
+          <!-- Chat Main -->
+          <div class="chat-main">
+
+            <!-- Chat Header -->
+            <div class="chat-header">
+              <button class="icon-btn chat-sidebar-toggle" onclick="toggleChatSidebar()">
+                <i class="fa-solid fa-sidebar"></i>
+              </button>
+              <div class="chat-header-info">
+                <div class="ai-status-dot"></div>
+                <span>وكيل DKM الذكي</span>
+                <span class="ai-status-label">متصل</span>
+              </div>
+              <button class="icon-btn" onclick="clearChat()" title="مسح المحادثة">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="chat-messages" id="chat-messages">
+              <!-- Welcome state -->
+              <div class="chat-welcome" id="chat-welcome">
+                <div class="welcome-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>مرحباً بك في وكيل DKM الذكي</h3>
+                <p>اسألني عن أي محتوى في مناهجك أو محاضراتك المرئية</p>
+                <div class="welcome-suggestions">
+                  <button class="suggestion-chip" onclick="sendSuggestion(this)">ما هي مفاهيم الفصل الأول؟</button>
+                  <button class="suggestion-chip" onclick="sendSuggestion(this)">اشرح لي مفهوم الخوارزميات</button>
+                  <button class="suggestion-chip" onclick="sendSuggestion(this)">أين يُذكر موضوع قواعد البيانات؟</button>
+                  <button class="suggestion-chip" onclick="sendSuggestion(this)">لخّص المحاضرة الثالثة</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search Mode Selector + Input -->
+            <div class="chat-input-area">
+              <div class="mode-selector">
+                <button class="mode-btn active" id="mode-all" onclick="setMode('all',this)" title="بحث شامل">
+                  <i class="fa-solid fa-layer-group"></i><span>شامل</span>
+                </button>
+                <button class="mode-btn" id="mode-docs" onclick="setMode('docs',this)" title="بحث في المستندات">
+                  <i class="fa-solid fa-file-lines"></i><span>مستندات</span>
+                </button>
+                <button class="mode-btn" id="mode-video" onclick="setMode('video',this)" title="بحث في الفيديوهات">
+                  <i class="fa-solid fa-video"></i><span>فيديو</span>
+                </button>
+              </div>
+              <div class="chat-input-row">
+                <textarea id="chat-input" class="chat-textarea" placeholder="اسأل وكيل DKM..." rows="1"
+                          onkeydown="handleChatKey(event)"
+                          oninput="autoResizeTextarea(this)"></textarea>
+                <button class="send-btn" id="send-btn" onclick="sendMessage()" title="إرسال">
+                  <span style="margin-left: 8px;">إرسال</span>
+                  <i class="fa-solid fa-paper-plane"></i>
+               </button>
+              </div>
+              <p class="chat-disclaimer">DKM AI قد يرتكب أخطاء. تحقق من المعلومات المهمة.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div><!-- /main-wrapper -->
+
+    <!-- Bottom Nav (Mobile) -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <a href="#" class="bottom-nav-item active" id="bn-dashboard" onclick="navigateTo('dashboard')">
+        <i class="fa-solid fa-house-chimney"></i><span>الرئيسية</span>
+      </a>
+      <a href="#" class="bottom-nav-item" id="bn-upload" onclick="navigateTo('upload')">
+        <i class="fa-solid fa-cloud-arrow-up"></i><span>المناهج</span>
+      </a>
+      <a href="#" class="bottom-nav-item" id="bn-query" onclick="navigateTo('query')">
+        <i class="fa-solid fa-table-list"></i><span>الاستعلام</span>
+      </a>
+      <a href="#" class="bottom-nav-item bn-chat" id="bn-chat" onclick="navigateTo('chat')">
+        <i class="fa-solid fa-robot"></i><span>AI</span>
+      </a>
+    </nav>
+
+  </div><!-- /app-shell -->
+
+  <!-- ═══════════════ MODALS ═══════════════ -->
+
+  <!-- Video Player Modal -->
+  <div class="modal-overlay hidden" id="video-modal" onclick="closeVideoModal(event)">
+    <div class="video-modal-card">
+      <div class="video-modal-header">
+        <span id="video-modal-title">محاضرة: مقدمة في الخوارزميات</span>
+        <button class="icon-btn" onclick="closeVideoModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="video-modal-body">
+        <div class="video-placeholder" id="video-placeholder">
+          <i class="fa-solid fa-circle-play"></i>
+          <p>مشغل الفيديو (Mux Player)</p>
+        </div>
+      </div>
+      <div class="video-modal-footer">
+        <span class="timestamp-badge" id="video-modal-timestamp"><i class="fa-solid fa-clock"></i> 00:00</span>
+        <p class="video-modal-context" id="video-modal-context">اقتُبس من هذا الموضع لصلته بسؤالك</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HTML Preview Modal -->
+  <div class="modal-overlay hidden" id="html-modal" onclick="closeHtmlModal(event)">
+    <div class="html-modal-card">
+      <div class="html-modal-header">
+        <span><i class="fa-solid fa-code"></i> عرض HTML</span>
+        <button class="icon-btn" onclick="closeHtmlModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="html-modal-body" id="html-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="sidebar-overlay hidden" id="sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

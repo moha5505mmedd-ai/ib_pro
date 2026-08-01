@@ -1,0 +1,114 @@
+[
+    {
+        "text": "- Another important aspect of computer imaging involves the ultimate \"receiver\" of the visual information\n- in some cases the human visual system,\n- in others the computer itself.\n- This distinction allows us to separate digital image processing into two primary application areas:\n- (1)human vision applications, and\n- (2) computer vision applications,",
+        "images": [],
+        "page": "1",
+        "section": "- Another important aspect of computer imaging inv",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- ·Definition of Digital image processing, also referred to as computer imaging:\n- -Acquisition and processing of visual information by computer.\n- Why is it important?\n- Human primary sense is visual sense.\n- Information can be conveyed well through images (one picture worth a thousand words).\n- Computer is required because the amount of data to be processed is huge.",
+        "images": [],
+        "page": "2",
+        "section": "- ·Definition of Digital image processing, also re",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- Image analysis is a key component in the development of both",
+        "images": [],
+        "page": "2",
+        "section": "- Image analysis is a key component in the develop",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "DIGITALIMAGEPROCESSING",
+        "images": [],
+        "page": "2",
+        "section": "DIGITALIMAGEPROCESSING",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- In computer vision applications the processed (output) images are for use by a computer,while\n- ·In human vision applications theoutput images are for human consumption.",
+        "images": [],
+        "page": "3",
+        "section": "- In computer vision applications the processed (o",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- Image segmentation is often one of the first steps in finding higher-level objects from the raw image data.\n- Feature extraction: acquiring higher-level image information (shape and color)\n- Pattern classification: using higher-level image information to identify objects within the image.",
+        "images": [],
+        "page": "3",
+        "section": "- Image segmentation is often one of the first ste",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- ·Image analysis involves the investigation of the image data for a specific application.\n- The image analysis process for computer vision requires the useof tools such as\n- image segmentation,\n- image transforms,\n- feature extraction, and\n- -pattern classification.",
+        "images": [],
+        "page": "4",
+        "section": "- ·Image analysis involves the investigation of th",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- Most computer vision applications involve tasksthat:\n- Are tedious for people to perform.\n- Require work in a hostile environment.\n- Require a high processing rate.\n- Require access and use ofa large database of information.",
+        "images": [],
+        "page": "4",
+        "section": "- Most computer vision applications involve taskst",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- Examples of applications of computer vision:\n- Quality control (inspect circuit board).\n- Facial recognition.\n- Automatic counting and gradingof lumber\n- Automatic diagnosis of skin lesions.\n- Automaticidentification of fingerprints.\n- DNA analysis\n- And many, manyothers.",
+        "images": [],
+        "page": "5",
+        "section": "- Examples of applications of computer vision: - Q",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "FIGURE 1.2-2",
+        "images": [],
+        "page": "5",
+        "section": "FIGURE 1.2-2",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "- (a) Computer vision system for lumber counting and grading, (b) image captured by the system, (c)intermediate image after processing, (d) example of system output after software analysis. (Photos courtesy of Tony Berke, River City Software.)",
+        "images": [],
+        "page": "5",
+        "section": "- (a) Computer vision system for lumber counting a",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "(b)",
+        "images": [],
+        "page": "5",
+        "section": "(b)",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "(a)",
+        "images": [],
+        "page": "6",
+        "section": "(a)",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "FIGURE 1.2-2",
+        "images": [],
+        "page": "6",
+        "section": "FIGURE 1.2-2",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "(a)Computer vision system forlumber countingandgrading (b)mae capturedyte ystem,()ntermediate River City Software.)",
+        "images": [],
+        "page": "6",
+        "section": "(a)Computer vision system forlumber countingandgra",
+        "filename": "12lecture1_compressed222.pdf"
+    },
+    {
+        "text": "(d)",
+        "images": [],
+        "page": "6",
+        "section": "(d)",
+        "filename": "12lecture1_compressed222.pdf"
+    }
+]

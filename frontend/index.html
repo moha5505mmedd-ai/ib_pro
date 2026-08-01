@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DKM Smart University</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- شريط التنقل (مخفي قبل تسجيل الدخول) -->
+    <nav id="navbar" class="navbar hidden">
+        <div class="nav-brand">DKM</div>
+        <ul class="nav-links">
+            <li onclick="navigate('home')">الرئيسية</li>
+            <li onclick="navigate('upload')">إدارة المناهج</li>
+            <li onclick="navigate('chat')">الوكيل الذكي</li>
+            <li onclick="navigate('query')">الاستعلامات</li>
+            <li onclick="logout()" class="logout-btn">تسجيل دخول</li>
+        </ul>
+    </nav>
+
+    <!-- 1. صفحة تسجيل الدخول والإنشاء -->
+    <section id="auth-section" class="page-section">
+        <div class="auth-container">
+            <h1 class="main-title">نظام DKM الذكي</h1>
+            <div class="auth-forms">
+                <!-- الدخول -->
+                <div class="card">
+                    <h2>تسجيل الدخول</h2>
+                    <form id="login-form">
+                        <input type="text" id="login-id" placeholder="الرقم الجامعي" required>
+                        <input type="password" id="login-password" placeholder="كلمة المرور" required>
+                        <button type="submit">دخول</button>
+                    </form>
+                </div>
+                <!-- الإنشاء -->
+                <div class="card">
+                    <h2>إنشاء حساب</h2>
+                    <form id="register-form">
+                        <input type="text" id="register-id" placeholder="الرقم الجامعي" required>
+                        <input type="text" id="register-name" placeholder="الاسم الكامل" required>
+                        <input type="password" id="register-password" placeholder="كلمة المرور" required>
+                        <button type="submit" class="btn-secondary">تسجيل جديد</button>
+                    </form>
+                </div>
+            </div>
+            <p id="auth-message"></p>
+        </div>
+    </section>
+
+    <!-- 2. الصفحة الترحيبية (الرئيسية) -->
+    <section id="home-section" class="page-section hidden">
+        <div class="welcome-container">
+            <h1 class="glitch-title">نظام DKM الذكي</h1>
+            <p class="subtitle">works m/mohammed dail</p>
+        </div>
+    </section>
+
+    <!-- 3. صفحة رفع المستندات والروابط -->
+    <section id="upload-section" class="page-section hidden">
+        <div class="content-container">
+            <h2>إدارة المناهج ومصادر التعلم</h2>
+            
+            <div class="card upload-card">
+                <h3>رفع منهج (PDF)</h3>
+                <form id="upload-form">
+                    <input type="file" id="pdf-file" accept=".pdf" required>
+                    <button type="submit">رفع ومعالجة</button>
+                </form>
+                <p id="upload-message"></p>
+            </div>
+
+
+            <div class="card upload-card">
+                <h3>رفع محاضرة مرئية (MP4)</h3>
+                <form id="upload-video-form">
+                    <input type="file" id="video-file" accept="video/mp4,video/x-m4v,video/*" required style="width: 100%; margin-bottom: 15px;">
+                    <button type="submit" class="btn-secondary" style="width: 100%;">رفع ومعالجة الفيديو</button>
+                </form>
+                <p id="upload-video-message" style="margin-top: 10px; font-weight: bold;"></p>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- 4. صفحة الاستعلامات (الطلاب والمناهج) -->
+    <section id="query-section" class="page-section hidden">
+        <div class="content-container">
+            <h2>نظام الاستعلام المركزي</h2>
+            <div class="card">
+                <div class="query-controls">
+                    <select id="query-type">
+                        <option value="students">البحث عن طالب</option>
+                        <option value="documents">المناهج المرفوعة</option>
+                    </select>
+                    <input type="text" id="query-input" placeholder="اكتب للبحث...">
+                    <button onclick="performQuery()">استعلام</button>
+                </div>
+                <div id="query-results" class="query-results">
+                    <!-- ستظهر النتائج هنا مستقبلا -->
+                    <p class="placeholder-text">الرجاء إدخال بيانات الاستعلام والضغط على زر استعلام...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- 5. صفحة الدردشة مع الذكاء الاصطناعي -->
+    <section id="chat-section" class="page-section hidden">
+        <div class="spa-chat-wrapper">
+            
+            <div class="chat-container">
+                <div id="chat-box" class="chat-box">
+                    <div class="message ai-message">مرحباً! أنا الوكيل الذكي لنظام DKM. كيف يمكنني مساعدتك في دراستك اليوم؟</div>
+                </div>
+                <div id="loading" class="thinking-box hidden">
+                    Thinking <span class="thinking-dots"><span>.</span><span>.</span><span>.</span></span>
+                </div>
+                <div id="embedded-video-viewer" class="video-viewer-container hidden">
+                    <div class="viewer-header">
+                        <h3 id="current-clip-title">المحاضرة المرئية (Mux Stream)</h3>
+                        <button onclick="closeVideoViewer()" class="close-viewer-btn">إغلاق المشغل</button>
+                    </div>
+                    <div class="video-wrapper">
+                        <mux-player
+                          id="main-spa-player"
+                          env-key="6t1ijkhi38ms1pq49uj234ltc"
+                          metadata-video-title="محاضرة DKM"
+                          controls
+                          style="width: 100%; border-radius: 8px;">
+                        </mux-player>
+                    </div>
+                </div>
+                <div class="chat-input-area" style="flex-wrap: wrap; align-items: flex-end;">
+                    <select id="search-mode" style="padding: 10px; border-radius: 8px; background: #334155; color: white; border: none; margin-bottom: 10px; width: 100%;">
+                        <option value="docs" selected>المستندات فقط (الافتراضي)</option>
+                        <option value="both">دمج شامل (مستندات + فيديو)</option>
+                        <option value="video">الفيديوهات فقط</option>
+                    </select>
+
+                    <textarea id="chat-input" placeholder="اكتب سؤالك الأكاديمي هنا... (اضغط Shift + Enter لسطر جديد)" style="flex: 1; resize: none; overflow: hidden; height: 45px; min-height: 45px; max-height: 120px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit; line-height: 1.5; outline: none;"></textarea>
+    
+                    <button id="send-btn" style="height: 45px; align-self: flex-end;">إرسال</button>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>

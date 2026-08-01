@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cairo", sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+
+/* --- Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e293b;
+    padding: 15px 30px;
+    border-bottom: 2px solid #3b82f6;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand { font-size: 24px; font-weight: bold; color: #3b82f6; }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.nav-links li:hover { background: #334155; }
+.logout-btn { color: #0084f8; font-weight: bold; }
+.logout-btn:hover { background: #fee2e2 !important; color: #b91c1c; }
+
+/* --- Layouts --- */
+.page-section { padding: 40px 20px; min-height: calc(100vh - 70px); }
+.content-container { max-width: 800px; margin: 0 auto; }
+h2 { margin-bottom: 25px; text-align: center; color: #e2e8f0; }
+
+.card {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* --- Auth Section --- */
+.auth-container { max-width: 900px; margin: auto; }
+.main-title { text-align: center; margin-bottom: 40px; font-size: 40px; }
+.auth-forms { display: flex; gap: 20px; flex-wrap: wrap; }
+.auth-forms .card { flex: 1; min-width: 300px; }
+
+form { display: flex; flex-direction: column; gap: 15px; }
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    font-family: inherit;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+    transition: 0.3s;
+}
+button:hover { background: #1d4ed8; }
+.btn-secondary { background: #0891b2; }
+.btn-secondary:hover { background: #0e7490; }
+
+/* --- Home (Welcome) Section --- */
+#home-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.welcome-container { margin-top: -100px; }
+.glitch-title { font-size: 60px; color: #3b82f6; margin-bottom: 10px; }
+.subtitle { font-size: 20px; color: #94a3b8; letter-spacing: 2px; }
+
+/* --- Upload Section --- */
+.disabled-card { opacity: 0.6; cursor: not-allowed; border: 1px dashed #64748b; }
+.btn-disabled { background: #475569; cursor: not-allowed; }
+
+/* --- Query Section --- */
+.query-controls { display: flex; gap: 10px; margin-bottom: 20px; }
+.query-controls select, .query-controls input { flex: 1; }
+.query-results {
+    background: #0f172a;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 150px;
+}
+.placeholder-text { color: #64748b; text-align: center; margin-top: 50px; }
+
+/* --- Chat Section --- */
+.chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #1e293b;
+    border-radius: 15px;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+}
+.chat-box { flex: 1; padding: 20px; overflow-y: auto; }
+.message { max-width: 80%; padding: 12px 18px; margin-bottom: 15px; border-radius: 15px; line-height: 1.6; }
+.user-message { background: #2563eb; margin-right: auto; border-bottom-right-radius: 2px; }
+.ai-message { background: #334155; margin-left: auto; border-bottom-left-radius: 2px; }
+.chat-input-area { display: flex; gap: 10px; padding: 20px; border-top: 1px solid #334155; }
+.chat-input-area input { flex: 1; }
+.loading { text-align: center; padding: 10px; color: #94a3b8; font-size: 14px; }
+
+
+
+/* ========================================= */
+/* تصميم عرض الصور المستخرجة من המنهج (PDF) */
+/* ========================================= */
+.extracted-img-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #10b981;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    background-color: #f8fafc;
+    text-align: center;
+}
+
+.img-header {
+    background-color: #f8fafc;
+    border-bottom: 2px solid #10b981;
+    padding: 8px;
+    color: #475569;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.dkm-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+
+/* تنسيق حاوية النقاط الثلاث */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 12px 18px;
+    background: #1e293b; /* نفس لون رسائل الذكاء الاصطناعي */
+    border-radius: 15px 15px 0 15px;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+/* تنسيق النقاط وحركتها */
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background-color: #3b82f6; /* لون أزرق جذاب */
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+/* تأخير الحركة لكل نقطة لتكوين الموجة */
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+/* تصميم صندوق جاري التفكير */
+.thinking-box {
+    display: flex;
+    align-items: center;
+    background-color: #1e293b; /* نفس لون رسائل الذكاء الاصطناعي */
+    color: #94a3b8;
+    padding: 12px 18px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* حركة النقاط الثلاث */
+.thinking-dots span {
+    animation: blink 1.4s infinite both;
+    font-size: 20px;
+    line-height: 10px;
+    margin: 0 2px;
+}
+
+.thinking-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.thinking-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+    0% { opacity: 0.2; transform: translateY(0); }
+    20% { opacity: 1; transform: translateY(-2px); }
+    100% { opacity: 0.2; transform: translateY(0); }
+}
