@@ -625,3 +625,95 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+
+//الجزاء الخاص ب الميكرفون
+// ==========================================
+// 6. ميزة التسجيل الصوتي الذكي (Gemini STT)
+// ==========================================
+const micBtn = document.getElementById("mic-btn");
+let mediaRecorder;
+let audioChunks = [];
+let isRecording = false;
+
+if (micBtn) {
+    micBtn.addEventListener("click", async () => {
+        if (!isRecording) {
+            // بدء التسجيل
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) audioChunks.push(event.data);
+                };
+
+                mediaRecorder.onstop = async () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    await sendAudioToGemini(audioBlob);
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+                
+                // تغيير شكل الزر ليدل على التسجيل
+                micBtn.style.background = "#ef4444"; // لون أحمر
+                micBtn.innerHTML = "⏹️"; 
+                chatInput.placeholder = "جاري الاستماع... انقر مجدداً للإيقاف";
+            } catch (err) {
+                alert("يرجى السماح باستخدام الميكروفون من إعدادات المتصفح.");
+                console.error("Mic Permission Error:", err);
+            }
+        } else {
+            // إيقاف التسجيل
+            mediaRecorder.stop();
+            mediaRecorder.stream.getTracks().forEach(track => track.stop()); // إغلاق الميكروفون فعلياً
+            isRecording = false;
+            
+            // تغيير شكل الزر ليدل على المعالجة
+            micBtn.style.background = "#fbbf24"; // لون أصفر
+            micBtn.innerHTML = "⏳";
+            chatInput.placeholder = "جاري تحويل الصوت إلى نص عبر Gemini...";
+        }
+    });
+}
+
+async function sendAudioToGemini(blob) {
+    const formData = new FormData();
+    formData.append("audio_file", blob, "voice_record.webm");
+
+    try {
+        const res = await fetch(`${BASE_URL}/chat/voice-to-text/`, {
+            method: "POST",
+            headers: { 
+                "Authorization": `Bearer ${localStorage.getItem("token")}` 
+            },
+            body: formData
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            
+            // وضع النص في مربع الإدخال
+            chatInput.value = data.text;
+            
+            // إعادة ضبط الواجهة
+            micBtn.style.background = "#10b981";
+            micBtn.innerHTML = "🎤";
+            chatInput.placeholder = "اكتب سؤالك الأكاديمي أو اضغط الميكروفون للتحدث...";
+            chatInput.style.height = '45px';
+            
+            // التشغيل الآلي لدالة البحث الأصلية دون أي تدخل يدوي
+            if (chatInput.value.trim() !== "") {
+                sendMessage(); 
+            }
+        } else {
+            throw new Error("فشل تحويل الصوت في السيرفر");
+        }
+    } catch (error) {
+        alert("حدث خطأ أثناء معالجة الصوت، يرجى المحاولة مرة أخرى.");
+        micBtn.style.background = "#10b981";
+        micBtn.innerHTML = "🎤";
+        chatInput.placeholder = "اكتب سؤالك الأكاديمي أو اضغط الميكروفون للتحدث...";
+    }
+}

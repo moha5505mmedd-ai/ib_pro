@@ -144,11 +144,13 @@
                         <option value="both">دمج شامل (مستندات + فيديو)</option>
                         <option value="video">الفيديوهات فقط</option>
                     </select>
-
-                    <textarea id="chat-input" placeholder="اكتب سؤالك الأكاديمي هنا... (اضغط Shift + Enter لسطر جديد)" style="flex: 1; resize: none; overflow: hidden; height: 45px; min-height: 45px; max-height: 120px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit; line-height: 1.5; outline: none;"></textarea>
-    
-                    <button id="send-btn" style="height: 45px; align-self: flex-end;">إرسال</button>
-
+                    <div style="display: flex; flex: 1; gap: 10px; width: 100%;">
+                        <button id="mic-btn" style="height: 45px; background: #10b981; border: none; border-radius: 8px; width: 45px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 20px;" title="تحدث بصوتك">
+                            🎤
+                        </button>
+                        <textarea id="chat-input" placeholder="اكتب سؤالك الأكاديمي أو اضغط الميكروفون للتحدث..." style="flex: 1; resize: none; overflow: hidden; height: 45px; min-height: 45px; max-height: 120px; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: inherit; line-height: 1.5; outline: none;"></textarea>
+                        <button id="send-btn" style="height: 45px; align-self: flex-end;">إرسال</button>
+                    </div>
                 </div>
             </div>
 

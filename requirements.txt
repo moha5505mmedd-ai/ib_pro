@@ -16,3 +16,4 @@ qdrant-client
 fastembed
 sentence-transformers
 pandas
+google-generativeai
