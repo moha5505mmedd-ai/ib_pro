@@ -61,7 +61,7 @@ def setup_twelvelabs_index_automatically():
             index_name=index_name,
             models=[
                 {"model_name": "marengo3.0", "model_options": ["visual", "audio"]}, # محرك البحث
-                {"model_name": "pegasus1.2", "model_options": ["visual", "audio"]}  # محرك التحليل
+                {"model_name": "pegasus1.5", "model_options": ["visual", "audio"]}  # محرك التحليل
             ]
         )
         print(f"🎉 [Twelve Labs]: تم إنشاء الفهرس الهجين بنجاح! ID: {new_index.id}")
